@@ -19,29 +19,6 @@ namespace PokemonWebApp.Pages
         {
             _logger = logger;
         }
-
-        string baseUrl = "https://localhost:44315";
-        public async Task<ActionResult> Index()
-        {
-            List<Pokemon> pokemons = new List<Pokemon>();
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/jason"));
-
-                HttpResponseMessage response = await client.GetAsync("api/Pokemons");
-                if (response.IsSuccessStatusCode)
-                {
-                    string result = response.Content.ReadAsStringAsync().Result;
-                    pokemons = JsonConvert.DeserializeObject<List<Pokemon>>(result);
-                }
-            }
-
-            return ActionResult(pokemons);
-        }
         public void OnGet()
         {
 

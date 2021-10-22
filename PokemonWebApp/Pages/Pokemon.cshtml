@@ -1,0 +1,11 @@
+﻿@page
+@model IEnumerable<PokemonWebApp.Models.Pokemon>
+}
+
+<div class="text-center">
+    @foreach(var item in Model)
+    {
+        @Html.DisplayNameFor(model => model.nome);
+    }
+
+</div>
